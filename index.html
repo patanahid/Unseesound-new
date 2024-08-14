@@ -1,0 +1,1144 @@
+
+<!DOCTYPE html><html w-tid="0"><head w-tid="1"><base href simulated-href="https://unseesound.com/" w-tid="2"/>
+<link rel="stylesheet" href="/fonts.css?v=ae2b053c1fe556f14ae55957f9ab9b17058c2cf2">
+<link rel="stylesheet" href="/ctxmenu.css?v=ae2b053c1fe556f14ae55957f9ab9b17058c2cf2">
+<script class="websim-injected">__WEBSIM_DATA__={"locationKey":"_65gnu53ffbn","titleKey":"_rkxz1hqof8","id":"Q7t6ejCEBW70zAjR1","url":"https://unseesound.com/","version":"ae2b053c1fe556f14ae55957f9ab9b17058c2cf2","method":"eval","command":"!continue again","hostOrigin":"https://websim.ai"}</script>
+<script class="websim-injected" src="/dist/index.js?v=ae2b053c1fe556f14ae55957f9ab9b17058c2cf2"></script>
+<title w-tid="3">UnSeeSound - Intelligent Text-to-Speech</title><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" w-tid="4"/><style w-tid="5">
+        :root {
+            --background: #f8f9fa;
+            --foreground: #212529;
+            --card: #ffffff;
+            --card-foreground: #212529;
+            --primary: #0d6efd;
+            --primary-foreground: #ffffff;
+            --secondary: #6c757d;
+            --secondary-foreground: #ffffff;
+            --accent: #e9ecef;
+            --border: #dee2e6;
+            --ring: #0d6efd;
+            --radius: 0.5rem;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --background: #212529;
+                --foreground: #f8f9fa;
+                --card: #343a40;
+                --card-foreground: #f8f9fa;
+                --primary: #0d6efd;
+                --primary-foreground: #ffffff;
+                --secondary: #6c757d;
+                --secondary-foreground: #ffffff;
+                --accent: #495057;
+                --border: #495057;
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--background);
+            color: var(--foreground);
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            padding-top: 80px;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+
+        nav {
+            background-color: var(--card);
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            transition: color 0.3s ease;
+        }
+
+        .logo svg {
+            width: 2rem;
+            height: 2rem;
+            margin-right: 0.5rem;
+            transition: fill 0.3s ease;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .nav-links a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        main {
+            flex-grow: 1;
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .card {
+            background-color: var(--card);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        textarea {
+            width: 100%;
+            height: 150px;
+            background-color: var(--background);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 0.75rem;
+            color: var(--foreground);
+            font-size: 1rem;
+            resize: vertical;
+            transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--ring);
+            box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.2);
+        }
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        button {
+            background-color: var(--primary);
+            color: var(--primary-foreground);
+            border: none;
+            border-radius: var(--radius);
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+            flex: 1 1 auto;
+            max-width: 200px;
+        }
+
+        button:hover {
+            background-color: #0b5ed7;
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+
+        button.secondary {
+            background-color: var(--secondary);
+            color: var(--secondary-foreground);
+        }
+
+        button.secondary:hover {
+            background-color: #5c636a;
+        }
+
+        #current-word-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        #current-word {
+            font-size: 2rem;
+            font-weight: bold;
+            text-align: center;
+            min-height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-grow: 1;
+            cursor: pointer;
+        }
+
+        .arrow-btn {
+            font-size: 2rem;
+            background: none;
+            border: none;
+            color: var(--primary);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .arrow-btn:hover {
+            color: #0b5ed7;
+        }
+
+        .highlight {
+            background-color: var(--primary);
+            color: var(--primary-foreground);
+            padding: 0.25rem 0.5rem;
+            border-radius: var(--radius);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .settings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .setting {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .setting label {
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--secondary);
+        }
+
+        select, input[type="range"] {
+            width: 100%;
+            padding: 0.5rem;
+            background-color: var(--background);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            color: var(--foreground);
+            font-size: 0.875rem;
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+        }
+
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.5rem center;
+            background-size: 1rem;
+            padding-right: 2.5rem;
+        }
+
+        input[type="range"] {
+            -webkit-appearance: none;
+            height: 0.5rem;
+            background-color: var(--accent);
+            outline: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 1rem;
+            height: 1rem;
+            background-color: var(--primary);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 1rem;
+            height: 1rem;
+            background-color: var(--primary);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        footer {
+            background-color: var(--card);
+            padding: 1rem;
+            text-align: center;
+            font-size: 0.875rem;
+            color: var(--secondary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.show {
+            opacity: 1;
+        }
+
+        .modal-content {
+            background-color: var(--card);
+            margin: 10% auto;
+            padding: 2rem;
+            border-radius: var(--radius);
+            max-width: 500px;
+            width: 90%;
+            transform: scale(0.9);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .modal.show .modal-content {
+            transform: scale(1);
+        }
+
+        .close {
+            color: var(--secondary);
+            float: right;
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close:hover {
+            color: var(--foreground);
+        }
+
+        #immersive-view {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--background);
+            z-index: 1000;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease, background-color 0.3s ease;
+        }
+
+        #immersive-view.show {
+            opacity: 1;
+        }
+
+        #immersive-word {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .immersive-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .immersive-button {
+            font-size: 1.5rem;
+            padding: 1rem 2rem;
+        }
+
+        #exit-immersive {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+        }
+
+        #prompt-enhancer-modal .modal-content {
+            max-width: 800px;
+        }
+
+        #prompt-enhancer-text {
+            width: 100%;
+            height: 200px;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background-color: var(--background);
+            color: var(--foreground);
+            font-family: monospace;
+            white-space: pre-wrap;
+            overflow-wrap: break-word;
+            overflow-y: auto;
+        }
+
+        #copy-prompt {
+            display: block;
+            margin: 1rem auto;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.2rem;
+            background: none;
+            border: none;
+            color: var(--primary);
+            cursor: pointer;
+            padding: 0.3rem;
+        }
+
+        @media (max-width: 768px) {
+            .button-group {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            button {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            #immersive-word {
+                font-size: 2rem;
+            }
+
+            .immersive-button {
+                font-size: 1.2rem;
+                padding: 0.75rem 1.5rem;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                flex-direction: column;
+                background-color: var(--card);
+                padding: 1rem;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 0.5rem 0;
+            }
+
+            nav {
+                flex-wrap: wrap;
+            }
+        }
+    </style></head><body w-tid="6">
+    <header w-tid="7">
+        <nav w-tid="8">
+            <div class="logo" w-tid="9">
+                <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" w-tid="10">
+                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" w-tid="11"></path>
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2" w-tid="12"></path>
+                    <line x1="12" y1="19" x2="12" y2="23" w-tid="13"></line>
+                    <line x1="8" y1="23" x2="16" y2="23" w-tid="14"></line>
+                </svg>
+                <span w-tid="15">UnSeeSound</span>
+            </div>
+            <div class="nav-links" w-tid="16">
+                <a href="https://unseesound.com/#" id="how-to-use" w-tid="17">How to Use</a>
+                <a href="https://unseesound.com/#" id="prompt-enhancer" w-tid="18">Prompt Enhancer</a>
+                <a href="https://unseesound.com/#" id="open-settings" w-tid="19">Settings</a>
+            </div>
+            <button class="menu-toggle" aria-label="Toggle menu" w-tid="20">☰</button>
+        </nav>
+    </header>
+
+    <main w-tid="21">
+        <div class="card" w-tid="22">
+            <textarea id="input-text" placeholder="Enter your text here..." w-tid="23"></textarea>
+            <div class="button-group" w-tid="24">
+                <button id="start-btn" w-tid="25">Start</button>
+                <button id="stop-btn" class="secondary" w-tid="26">Stop</button>
+                <button id="next-word-btn" class="secondary" w-tid="27">Next Word</button>
+                <button id="spelling-btn" class="secondary" w-tid="28">Spelling</button>
+                <button id="immersive-btn" class="secondary" w-tid="29">Immersive Mode</button>
+            </div>
+        </div>
+
+        <div id="current-word-container" w-tid="30">
+            <button class="arrow-btn" id="prev-word" w-tid="31">←</button>
+            <div id="current-word" class="fade-in" w-tid="32"></div>
+            <button class="arrow-btn" id="next-word" w-tid="33">→</button>
+        </div>
+    </main>
+
+    <footer w-tid="34">
+        <p w-tid="35">© 2023 UnSeeSound. All rights reserved.</p>
+    </footer>
+
+    <div id="settings-modal" class="modal" w-tid="36">
+        <div class="modal-content" w-tid="37">
+            <span class="close" w-tid="38">×</span>
+            <h2 w-tid="39">Settings</h2>
+            <div class="settings-grid" w-tid="40">
+                <div class="setting" w-tid="41">
+                    <label for="voice-select" w-tid="42">Voice</label>
+                    <select id="voice-select" w-tid="43"></select>
+                </div>
+                <div class="setting" w-tid="44">
+                    <label for="speed-slider" w-tid="45">Speed</label>
+                    <input type="range" id="speed-slider" min="0.5" max="2" step="0.1" value="1" w-tid="46"/>
+                </div>
+                <div class="setting" w-tid="47">
+                    <label for="pitch-slider" w-tid="48">Pitch</label>
+                    <input type="range" id="pitch-slider" min="0.5" max="2" step="0.1" value="1" w-tid="49"/>
+                </div>
+                <div class="setting" w-tid="50">
+                    <label for="volume-slider" w-tid="51">Volume</label>
+                    <input type="range" id="volume-slider" min="0" max="1" step="0.1" value="1" w-tid="52"/>
+                </div>
+                <div class="setting" w-tid="53">
+                    <label for="auto-speak-toggle" w-tid="54">Auto-speak on word change</label>
+                    <input type="checkbox" id="auto-speak-toggle" w-tid="55"/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="immersive-view" w-tid="56">
+        <button id="exit-immersive" class="secondary" w-tid="57">Exit Immersive Mode</button>
+        <div id="immersive-word" class="fade-in" w-tid="58"></div>
+        <div class="immersive-buttons" w-tid="59">
+            <button id="immersive-prev" class="immersive-button secondary" w-tid="60">Previous</button>
+            <button id="immersive-spelling" class="immersive-button secondary" w-tid="61">Spelling</button>
+            <button id="immersive-next" class="immersive-button secondary" w-tid="62">Next</button>
+        </div>
+    </div>
+
+    <div id="prompt-enhancer-modal" class="modal" w-tid="63">
+        <div class="modal-content" w-tid="64">
+            <span class="close" w-tid="65">×</span>
+            <h2 w-tid="66">Prompt Enhancer</h2>
+            <textarea id="prompt-enhancer-text" readonly w-tid="67">Using the provided context, format the given input text appropriately for text-to-speech (TTS) to ensure it is spoken correctly. Apply the formatting creatively and consistently across various instances, including but not limited to symbols and specific expressions.
+
+Context:
+The output will be used by a TTS system to speak certain formats correctly. Apply specific formatting such as replacing symbols with their verbal equivalents (e.g., ? as "question_mark," ! as "exclamation_mark"), converting mathematical expressions into spoken form, and indicating the structure of the content (e.g., headings, line breaks).
+
+Examples:
+
+Input: Question Answers Q.1 How was MK Gandhi Killed?
+
+Output: Heading_Question_answers Question_one How was MK Gandhi Killed question_mark newline Answer By a gun full_stop
+
+Input: What is (x+y)^2?
+
+Output: what is x plus y whole_squared
+
+Input: What the hell!!
+
+Output: what the hell double_exclamation_mark
+
+Note: This formatting is not limited to the given examples. Apply it to all instances where such formatting is necessary to ensure accurate verbal representation in TTS output.
+
+INPUT:</textarea>
+            <button id="copy-prompt" w-tid="68">Copy Prompt</button>
+        </div>
+    </div>
+
+    <script w-tid="69">
+        const inputText = document.getElementById('input-text');
+        const startBtn = document.getElementById('start-btn');
+        const stopBtn = document.getElementById('stop-btn');
+        const nextWordBtn = document.getElementById('next-word-btn');
+        const spellingBtn = document.getElementById('spelling-btn');
+        const immersiveBtn = document.getElementById('immersive-btn');
+        const currentWordDiv = document.getElementById('current-word');
+        const voiceSelect = document.getElementById('voice-select');
+        const speedSlider = document.getElementById('speed-slider');
+        const pitchSlider = document.getElementById('pitch-slider');
+        const volumeSlider = document.getElementById('volume-slider');
+        const settingsModal = document.getElementById('settings-modal');
+        const openSettingsBtn = document.getElementById('open-settings');
+        const closeSettingsBtn = document.getElementsByClassName('close')[0];
+        const immersiveView = document.getElementById('immersive-view');
+        const exitImmersiveBtn = document.getElementById('exit-immersive');
+        const immersiveWordDiv = document.getElementById('immersive-word');
+        const prevWordBtn = document.getElementById('prev-word');
+        const nextWordArrowBtn = document.getElementById('next-word');
+        const autoSpeakToggle = document.getElementById('auto-speak-toggle');
+        const promptEnhancerBtn = document.getElementById('prompt-enhancer');
+        const promptEnhancerModal = document.getElementById('prompt-enhancer-modal');
+        const closePromptEnhancerBtn = promptEnhancerModal.getElementsByClassName('close')[0];
+        const copyPromptBtn = document.getElementById('copy-prompt');
+        const immersivePrevBtn = document.getElementById('immersive-prev');
+        const immersiveNextBtn = document.getElementById('immersive-next');
+        const immersiveSpellingBtn = document.getElementById('immersive-spelling');
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        let synth = window.speechSynthesis;
+        let voices = [];
+        let currentWordIndex = 0;
+        let words = [];
+        let autoSpeak = false;
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        function populateVoiceList() {
+            voices = synth.getVoices();
+            voiceSelect.innerHTML = '';
+            voices.forEach((voice, i) => {
+                const option = document.createElement('option');
+                option.textContent = `${voice.name} (${voice.lang})`;
+                option.setAttribute('data-lang', voice.lang);
+                option.setAttribute('data-name', voice.name);
+                voiceSelect.appendChild(option);
+            });
+        }
+
+        populateVoiceList();
+        if (speechSynthesis.onvoiceschanged !== undefined) {
+            speechSynthesis.onvoiceschanged = populateVoiceList;
+        }
+
+        function speak(text, isSpelling = false) {
+            return new Promise((resolve, reject) => {
+                if (synth.speaking) {
+                    synth.cancel();
+                }
+
+                if (text !== '') {
+                    const utterance = new SpeechSynthesisUtterance(text);
+                    utterance.onend = function (event) {
+                        resolve();
+                    };
+                    utterance.onerror = function (event) {
+                        console.error('SpeechSynthesisUtterance.onerror', event);
+                        reject(event);
+                    };
+                    utterance.voice = voices[voiceSelect.selectedIndex];
+                    utterance.pitch = parseFloat(pitchSlider.value);
+                    utterance.rate = isSpelling ? 0.8 : parseFloat(speedSlider.value);
+                    utterance.volume = parseFloat(volumeSlider.value);
+                    synth.speak(utterance);
+                } else {
+                    resolve();
+                }
+            });
+        }
+
+        function updateCurrentWord(index) {
+            if (index >= 0 && index < words.length) {
+                currentWordIndex = index;
+                const word = words[currentWordIndex];
+                currentWordDiv.innerHTML = `<span class="highlight">${word}</span>`;
+                immersiveWordDiv.innerHTML = `<span class="highlight">${word}</span>`;
+                currentWordDiv.classList.remove('fade-in');
+                immersiveWordDiv.classList.remove('fade-in');
+                void currentWordDiv.offsetWidth;
+                void immersiveWordDiv.offsetWidth;
+                currentWordDiv.classList.add('fade-in');
+                immersiveWordDiv.classList.add('fade-in');
+                if (autoSpeak) {
+                    speak(word).catch(console.error);
+                }
+            } else if (index >= words.length) {
+                currentWordDiv.innerHTML = '<span class="highlight">End of Text</span>';
+                immersiveWordDiv.innerHTML = '<span class="highlight">End of Text</span>';
+                currentWordDiv.classList.remove('fade-in');
+                immersiveWordDiv.classList.remove('fade-in');
+                void currentWordDiv.offsetWidth;
+                void immersiveWordDiv.offsetWidth;
+                currentWordDiv.classList.add('fade-in');
+                immersiveWordDiv.classList.add('fade-in');
+            }
+        }
+
+        function speakNextWord() {
+            if (currentWordIndex + 1 < words.length) {
+                updateCurrentWord(currentWordIndex + 1);
+                speak(words[currentWordIndex]).catch(console.error);
+            } else {
+                updateCurrentWord(words.length);
+            }
+        }
+
+        function speakPreviousWord() {
+            if (currentWordIndex > 0) {
+                updateCurrentWord(currentWordIndex - 1);
+                speak(words[currentWordIndex]).catch(console.error);
+            }
+        }
+
+        function speakSpelling() {
+            if (currentWordIndex >= 0 && currentWordIndex < words.length) {
+                const word = words[currentWordIndex];
+                const spelling = word.split('').join(' ');
+                speak(spelling, true).catch(console.error);
+            }
+        }
+
+        startBtn.addEventListener('click', () => {
+            words = inputText.value.trim().split(/\s+/);
+            currentWordIndex = -1;
+            speakNextWord();
+        });
+
+        stopBtn.addEventListener('click', () => {
+            synth.cancel();
+            currentWordDiv.textContent = "";
+            immersiveWordDiv.textContent = "";
+            currentWordIndex = -1;
+        });
+
+        nextWordBtn.addEventListener('click', speakNextWord);
+        spellingBtn.addEventListener('click', speakSpelling);
+
+        immersiveBtn.addEventListener('click', () => {
+            immersiveView.style.display = 'flex';
+            setTimeout(() => {
+                immersiveView.classList.add('show');
+            }, 10);
+        });
+
+        exitImmersiveBtn.addEventListener('click', () => {
+            immersiveView.classList.remove('show');
+            setTimeout(() => {
+                immersiveView.style.display = 'none';
+            }, 300);
+        });
+
+        immersiveView.addEventListener('click', (e) => {
+            if (e.target === immersiveView) {
+                speakNextWord();
+            }
+        });
+
+        openSettingsBtn.addEventListener('click', () => {
+            settingsModal.style.display = 'block';
+            setTimeout(() => {
+                settingsModal.classList.add('show');
+            }, 10);
+        });
+
+        closeSettingsBtn.addEventListener('click', () => {
+            settingsModal.classList.remove('show');
+            setTimeout(() => {
+                settingsModal.style.display = 'none';
+            }, 300);
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === settingsModal) {
+                settingsModal.classList.remove('show');
+                setTimeout(() => {
+                    settingsModal.style.display = 'none';
+                }, 300);
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space' && document.activeElement !== inputText) {
+                e.preventDefault();
+                speakNextWord();
+            } else if (e.code === 'KeyS' && document.activeElement !== inputText) {
+                e.preventDefault();
+                speakSpelling();
+            } else if (e.code === 'ArrowLeft' && document.activeElement !== inputText) {
+                e.preventDefault();
+                speakPreviousWord();
+            } else if (e.code === 'ArrowRight' && document.activeElement !== inputText) {
+                e.preventDefault();
+                speakNextWord();
+            }
+        });
+
+        prevWordBtn.addEventListener('click', speakPreviousWord);
+        nextWordArrowBtn.addEventListener('click', speakNextWord);
+
+        currentWordDiv.addEventListener('click', () => {
+            if (currentWordIndex >= 0 && currentWordIndex < words.length) {
+                speak(words[currentWordIndex]).catch(console.error);
+            }
+        });
+
+        immersiveWordDiv.addEventListener('click', () => {
+            if (currentWordIndex >= 0 && currentWordIndex < words.length) {
+                speak(words[currentWordIndex]).catch(console.error);
+            }
+        });
+
+        autoSpeakToggle.addEventListener('change', (e) => {
+            autoSpeak = e.target.checked;
+        });
+
+        // Swipe gestures for immersive mode
+        immersiveView.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, false);
+
+        immersiveView.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, false);
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX) {
+                // Swipe left
+                speakNextWord();
+            }
+            if (touchEndX > touchStartX) {
+                // Swipe right
+                speakPreviousWord();
+            }
+        }
+
+        promptEnhancerBtn.addEventListener('click', () => {
+            promptEnhancerModal.style.display = 'block';
+            setTimeout(() => {
+                promptEnhancerModal.classList.add('show');
+            }, 10);
+        });
+
+        closePromptEnhancerBtn.addEventListener('click', () => {
+            promptEnhancerModal.classList.remove('show');
+            setTimeout(() => {
+                promptEnhancerModal.style.display = 'none';
+            }, 300);
+        });
+
+        copyPromptBtn.addEventListener('click', () => {
+            const promptText = document.getElementById('prompt-enhancer-text').value;
+            navigator.clipboard.writeText(promptText).then(() => {
+                alert('Prompt copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+            });
+        });
+
+        immersivePrevBtn.addEventListener('click', speakPreviousWord);
+        immersiveNextBtn.addEventListener('click', speakNextWord);
+        immersiveSpellingBtn.addEventListener('click', speakSpelling);
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('show');
+        });
+
+        function handleResize() {
+            if (window.innerWidth > 768) {
+                navLinks.classList.remove('show');
+                menuToggle.style.display = 'none';
+            } else {
+                menuToggle.style.display = 'block';
+            }
+        }
+
+        window.addEventListener('resize', handleResize);
+        handleResize();
+
+        // How to Use modal
+        const howToUseBtn = document.getElementById('how-to-use');
+        const howToUseModal = document.createElement('div');
+        howToUseModal.className = 'modal';
+        howToUseModal.innerHTML = `
+            <div class="modal-content">
+                <span class="close">×</span>
+                <h2>How to Use UnSeeSound</h2>
+                <ol>
+                    <li>Enter your text in the input area.</li>
+                    <li>Click "Start" to begin text-to-speech.</li>
+                    <li>Use "Next Word" or press the Space key to move to the next word.</li>
+                    <li>Click "Spelling" or press the S key to hear the spelling of the current word.</li>
+                    <li>Use the left and right arrow keys to navigate between words.</li>
+                    <li>Adjust voice, speed, pitch, and volume in Settings.</li>
+                    <li>Try Immersive Mode for a full-screen experience.</li>
+                    <li>Use the Prompt Enhancer to format your text for optimal TTS performance.</li>
+                </ol>
+            </div>
+        `;
+        document.body.appendChild(howToUseModal);
+
+        const closeHowToUseBtn = howToUseModal.querySelector('.close');
+
+        howToUseBtn.addEventListener('click', () => {
+            howToUseModal.style.display = 'block';
+            setTimeout(() => {
+                howToUseModal.classList.add('show');
+            }, 10);
+        });
+
+        closeHowToUseBtn.addEventListener('click', () => {
+            howToUseModal.classList.remove('show');
+            setTimeout(() => {
+                howToUseModal.style.display = 'none';
+            }, 300);
+        });
+
+        // Dark mode toggle
+        const darkModeToggle = document.createElement('button');
+        darkModeToggle.id = 'dark-mode-toggle';
+        darkModeToggle.textContent = '🌓';
+        darkModeToggle.style.position = 'fixed';
+        darkModeToggle.style.bottom = '1rem';
+        darkModeToggle.style.right = '1rem';
+        darkModeToggle.style.padding = '0.5rem';
+        darkModeToggle.style.fontSize = '1.5rem';
+        darkModeToggle.style.backgroundColor = 'var(--card)';
+        darkModeToggle.style.border = 'none';
+        darkModeToggle.style.borderRadius = 'var(--radius)';
+        darkModeToggle.style.cursor = 'pointer';
+        document.body.appendChild(darkModeToggle);
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+        }
+
+        darkModeToggle.addEventListener('click', toggleDarkMode);
+
+        // Check for saved dark mode preference
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+        }
+
+        // Prevent text selection in immersive mode
+        immersiveView.addEventListener('selectstart', (e) => e.preventDefault());
+
+        // Add visual feedback for button clicks
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach(button => {
+            button.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 100);
+            });
+        });
+
+        // Add tooltip for current word
+        const tooltip = document.createElement('div');
+        tooltip.style.position = 'absolute';
+        tooltip.style.backgroundColor = 'var(--card)';
+        tooltip.style.color = 'var(--card-foreground)';
+        tooltip.style.padding = '0.5rem';
+        tooltip.style.borderRadius = 'var(--radius)';
+        tooltip.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+        tooltip.style.display = 'none';
+        tooltip.style.zIndex = '1000';
+        document.body.appendChild(tooltip);
+
+        currentWordDiv.addEventListener('mouseover', (e) => {
+            if (currentWordIndex >= 0 && currentWordIndex < words.length) {
+                tooltip.textContent = `Word ${currentWordIndex + 1} of ${words.length}`;
+                tooltip.style.display = 'block';
+                tooltip.style.left = `${e.pageX + 10}px`;
+                tooltip.style.top = `${e.pageY + 10}px`;
+            }
+        });
+
+        currentWordDiv.addEventListener('mouseout', () => {
+            tooltip.style.display = 'none';
+        });
+
+        // Add a progress bar
+        const progressBar = document.createElement('div');
+        progressBar.style.width = '100%';
+        progressBar.style.height = '5px';
+        progressBar.style.backgroundColor = 'var(--accent)';
+        progressBar.style.position = 'fixed';
+        progressBar.style.top = '0';
+        progressBar.style.left = '0';
+        progressBar.style.zIndex = '1001';
+
+        const progressIndicator = document.createElement('div');
+        progressIndicator.style.width = '0%';
+        progressIndicator.style.height = '100%';
+        progressIndicator.style.backgroundColor = 'var(--primary)';
+        progressIndicator.style.transition = 'width 0.3s ease';
+
+        progressBar.appendChild(progressIndicator);
+        document.body.appendChild(progressBar);
+
+        function updateProgressBar() {
+            if (words.length > 0) {
+                const progress = ((currentWordIndex + 1) / words.length) * 100;
+                progressIndicator.style.width = `${progress}%`;
+            } else {
+                progressIndicator.style.width = '0%';
+            }
+        }
+
+        // Update progress bar when changing words
+        const originalUpdateCurrentWord = updateCurrentWord;
+        updateCurrentWord = function(index) {
+            originalUpdateCurrentWord(index);
+            updateProgressBar();
+        };
+
+        // Add keyboard shortcuts modal
+        const keyboardShortcutsBtn = document.createElement('button');
+        keyboardShortcutsBtn.textContent = '⌨️';
+        keyboardShortcutsBtn.style.position = 'fixed';
+        keyboardShortcutsBtn.style.bottom = '1rem';
+        keyboardShortcutsBtn.style.left = '1rem';
+        keyboardShortcutsBtn.style.padding = '0.5rem';
+        keyboardShortcutsBtn.style.fontSize = '1.5rem';
+        keyboardShortcutsBtn.style.backgroundColor = 'var(--card)';
+        keyboardShortcutsBtn.style.border = 'none';
+        keyboardShortcutsBtn.style.borderRadius = 'var(--radius)';
+        keyboardShortcutsBtn.style.cursor = 'pointer';
+        document.body.appendChild(keyboardShortcutsBtn);
+
+        const keyboardShortcutsModal = document.createElement('div');
+        keyboardShortcutsModal.className = 'modal';
+        keyboardShortcutsModal.innerHTML = `
+            <div class="modal-content">
+                <span class="close">×</span>
+                <h2>Keyboard Shortcuts</h2>
+                <ul>
+                    <li><strong>Space:</strong> Next word</li>
+                    <li><strong>S:</strong> Spell current word</li>
+                    <li><strong>Left Arrow:</strong> Previous word</li>
+                    <li><strong>Right Arrow:</strong> Next word</li>
+                    <li><strong>Esc:</strong> Exit immersive mode</li>
+                </ul>
+            </div>
+        `;
+        document.body.appendChild(keyboardShortcutsModal);
+
+        const closeKeyboardShortcutsBtn = keyboardShortcutsModal.querySelector('.close');
+
+        keyboardShortcutsBtn.addEventListener('click', () => {
+            keyboardShortcutsModal.style.display = 'block';
+            setTimeout(() => {
+                keyboardShortcutsModal.classList.add('show');
+            }, 10);
+        });
+
+        closeKeyboardShortcutsBtn.addEventListener('click', () => {
+            keyboardShortcutsModal.classList.remove('show');
+            setTimeout(() => {
+                keyboardShortcutsModal.style.display = 'none';
+            }, 300);
+        });
+
+        // Add Esc key functionality to exit immersive mode
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && immersiveView.classList.contains('show')) {
+                exitImmersiveBtn.click();
+            }
+        });
+
+        // Add word count display
+        const wordCountDisplay = document.createElement('div');
+        wordCountDisplay.style.position = 'absolute';
+        wordCountDisplay.style.top = '0.5rem';
+        wordCountDisplay.style.right = '0.5rem';
+        wordCountDisplay.style.fontSize = '0.8rem';
+        wordCountDisplay.style.color = 'var(--secondary)';
+        inputText.parentNode.style.position = 'relative';
+        inputText.parentNode.appendChild(wordCountDisplay);
+
+        inputText.addEventListener('input', updateWordCount);
+
+        function updateWordCount() {
+            const count = inputText.value.trim().split(/\s+/).length;
+            wordCountDisplay.textContent = `${count} word${count !== 1 ? 's' : ''}`;
+        }
+
+        // Initialize word count
+        updateWordCount();
+
+        // Add text-to-speech for UI elements
+        const uiElements = document.querySelectorAll('button, a, label, h2');
+        uiElements.forEach(element => {
+            element.addEventListener('mouseover', () => {
+                if (autoSpeak) {
+                    speak(element.textContent).catch(console.error);
+                }
+            });
+        });
+
+        // Add confetti effect for completing the text
+        function showConfetti() {
+            const confettiCount = 200;
+            const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
+
+            for (let i = 0; i < confettiCount; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'fixed';
+                confetti.style.width = '10px';
+                confetti.style.height = '10px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = `${Math.random() * 100}vw`;
+                confetti.style.top = '-10px';
+                confetti.style.borderRadius = '50%';
+                confetti.style.zIndex = '9999';
+                document.body.appendChild(confetti);
+
+                const animation = confetti.animate([
+                    { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+                    { transform: `translateY(100vh) rotate(${720 * Math.random()}deg)`, opacity: 0 }
+                ], {
+                    duration: 3000 + Math.random() * 3000,
+                    easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                });
+
+                animation.onfinish = () => confetti.remove();
+            }
+        }
+
+        // Show confetti when reaching the end of the text
+        const originalSpeakNextWord = speakNextWord;
+        speakNextWord = function() {
+            originalSpeakNextWord();
+            if (currentWordIndex >= words.length - 1) {
+                showConfetti();
+            }
+        };
+
+    </script>
+</body></html>
