@@ -1,8 +1,5 @@
 
-<!DOCTYPE html><html w-tid="0"><head w-tid="1">
-<link rel="stylesheet" href="/fonts.css?v=ae2b053c1fe556f14ae55957f9ab9b17058c2cf2">
-<link rel="stylesheet" href="/ctxmenu.css?v=ae2b053c1fe556f14ae55957f9ab9b17058c2cf2">
-<title w-tid="3">UnSeeSound - Intelligent Text-to-Speech</title><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" w-tid="4"/><style w-tid="5">
+<html><head><base href="https://unseesound.com/"><title>UnSeeSound - Intelligent Text-to-Speech</title><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet"/><style>
         :root {
             --background: #f8f9fa;
             --foreground: #212529;
@@ -233,7 +230,7 @@
             color: var(--secondary);
         }
 
-        select, input[type="range"] {
+        select, input[type="range"], input[type="number"] {
             width: 100%;
             padding: 0.5rem;
             background-color: var(--background);
@@ -473,94 +470,98 @@
                 flex-wrap: wrap;
             }
         }
-    </style></head><body w-tid="6">
-    <header w-tid="7">
-        <nav w-tid="8">
-            <div class="logo" w-tid="9">
-                <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" w-tid="10">
-                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" w-tid="11"></path>
-                    <path d="M19 10v2a7 7 0 0 1-14 0v-2" w-tid="12"></path>
-                    <line x1="12" y1="19" x2="12" y2="23" w-tid="13"></line>
-                    <line x1="8" y1="23" x2="16" y2="23" w-tid="14"></line>
+    </style></head><body>
+    <header>
+        <nav>
+            <div class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                    <line x1="12" y1="19" x2="12" y2="23"></line>
+                    <line x1="8" y1="23" x2="16" y2="23"></line>
                 </svg>
-                <span w-tid="15">UnSeeSound</span>
+                <span>UnSeeSound</span>
             </div>
-            <div class="nav-links" w-tid="16">
-                <a href="#" id="how-to-use" w-tid="17">How to Use</a>
-                <a href="#" id="prompt-enhancer" w-tid="18">Prompt Enhancer</a>
-                <a href="#" id="open-settings" w-tid="19">Settings</a>
+            <div class="nav-links">
+                <a href="#" id="how-to-use">How to Use</a>
+                <a href="#" id="prompt-enhancer">Prompt Enhancer</a>
+                <a href="#" id="open-settings">Settings</a>
             </div>
-            <button class="menu-toggle" aria-label="Toggle menu" w-tid="20">☰</button>
+            <button class="menu-toggle" aria-label="Toggle menu">☰</button>
         </nav>
     </header>
 
-    <main w-tid="21">
-        <div class="card" w-tid="22">
-            <textarea id="input-text" placeholder="Enter your text here..." w-tid="23"></textarea>
-            <div class="button-group" w-tid="24">
-                <button id="start-btn" w-tid="25">Start</button>
-                <button id="stop-btn" class="secondary" w-tid="26">Stop</button>
-                <button id="next-word-btn" class="secondary" w-tid="27">Next Word</button>
-                <button id="spelling-btn" class="secondary" w-tid="28">Spelling</button>
-                <button id="immersive-btn" class="secondary" w-tid="29">Immersive Mode</button>
+    <main>
+        <div class="card">
+            <textarea id="input-text" placeholder="Enter your text here..."></textarea>
+            <div class="button-group">
+                <button id="start-btn">Start</button>
+                <button id="stop-btn" class="secondary">Stop</button>
+                <button id="next-word-btn" class="secondary">Next Word</button>
+                <button id="spelling-btn" class="secondary">Spelling</button>
+                <button id="immersive-btn" class="secondary">Immersive Mode</button>
             </div>
         </div>
 
-        <div id="current-word-container" w-tid="30">
-            <button class="arrow-btn" id="prev-word" w-tid="31">←</button>
-            <div id="current-word" class="fade-in" w-tid="32"></div>
-            <button class="arrow-btn" id="next-word" w-tid="33">→</button>
+        <div id="current-word-container">
+            <button class="arrow-btn" id="prev-word">←</button>
+            <div id="current-word" class="fade-in"></div>
+            <button class="arrow-btn" id="next-word">→</button>
         </div>
     </main>
 
-    <footer w-tid="34">
-        <p w-tid="35">© 2023 UnSeeSound. All rights reserved.</p>
+    <footer>
+        <p>© 2023 UnSeeSound. All rights reserved.</p>
     </footer>
 
-    <div id="settings-modal" class="modal" w-tid="36">
-        <div class="modal-content" w-tid="37">
-            <span class="close" w-tid="38">×</span>
-            <h2 w-tid="39">Settings</h2>
-            <div class="settings-grid" w-tid="40">
-                <div class="setting" w-tid="41">
-                    <label for="voice-select" w-tid="42">Voice</label>
-                    <select id="voice-select" w-tid="43"></select>
+    <div id="settings-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">×</span>
+            <h2>Settings</h2>
+            <div class="settings-grid">
+                <div class="setting">
+                    <label for="voice-select">Voice</label>
+                    <select id="voice-select"></select>
                 </div>
-                <div class="setting" w-tid="44">
-                    <label for="speed-slider" w-tid="45">Speed</label>
-                    <input type="range" id="speed-slider" min="0.5" max="2" step="0.1" value="1" w-tid="46"/>
+                <div class="setting">
+                    <label for="speed-slider">Speed</label>
+                    <input type="range" id="speed-slider" min="0.5" max="2" step="0.1" value="1"/>
                 </div>
-                <div class="setting" w-tid="47">
-                    <label for="pitch-slider" w-tid="48">Pitch</label>
-                    <input type="range" id="pitch-slider" min="0.5" max="2" step="0.1" value="1" w-tid="49"/>
+                <div class="setting">
+                    <label for="pitch-slider">Pitch</label>
+                    <input type="range" id="pitch-slider" min="0.5" max="2" step="0.1" value="1"/>
                 </div>
-                <div class="setting" w-tid="50">
-                    <label for="volume-slider" w-tid="51">Volume</label>
-                    <input type="range" id="volume-slider" min="0" max="1" step="0.1" value="1" w-tid="52"/>
+                <div class="setting">
+                    <label for="volume-slider">Volume</label>
+                    <input type="range" id="volume-slider" min="0" max="1" step="0.1" value="1"/>
                 </div>
-                <div class="setting" w-tid="53">
-                    <label for="auto-speak-toggle" w-tid="54">Auto-speak on word change</label>
-                    <input type="checkbox" id="auto-speak-toggle" w-tid="55"/>
+                <div class="setting">
+                    <label for="auto-speak-toggle">Auto-speak on word change</label>
+                    <input type="checkbox" id="auto-speak-toggle"/>
+                </div>
+                <div class="setting">
+                    <label for="words-per-group">Words per group</label>
+                    <input type="number" id="words-per-group" min="1" max="10" value="1"/>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="immersive-view" w-tid="56">
-        <button id="exit-immersive" class="secondary" w-tid="57">Exit Immersive Mode</button>
-        <div id="immersive-word" class="fade-in" w-tid="58"></div>
-        <div class="immersive-buttons" w-tid="59">
-            <button id="immersive-prev" class="immersive-button secondary" w-tid="60">Previous</button>
-            <button id="immersive-spelling" class="immersive-button secondary" w-tid="61">Spelling</button>
-            <button id="immersive-next" class="immersive-button secondary" w-tid="62">Next</button>
+    <div id="immersive-view">
+        <button id="exit-immersive" class="secondary">Exit Immersive Mode</button>
+        <div id="immersive-word" class="fade-in"></div>
+        <div class="immersive-buttons">
+            <button id="immersive-prev" class="immersive-button secondary">Previous</button>
+            <button id="immersive-spelling" class="immersive-button secondary">Spelling</button>
+            <button id="immersive-next" class="immersive-button secondary">Next</button>
         </div>
     </div>
 
-    <div id="prompt-enhancer-modal" class="modal" w-tid="63">
-        <div class="modal-content" w-tid="64">
-            <span class="close" w-tid="65">×</span>
-            <h2 w-tid="66">Prompt Enhancer</h2>
-            <textarea id="prompt-enhancer-text" readonly w-tid="67">Using the provided context, format the given input text appropriately for text-to-speech (TTS) to ensure it is spoken correctly. Apply the formatting creatively and consistently across various instances, including but not limited to symbols and specific expressions.
+    <div id="prompt-enhancer-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">×</span>
+            <h2>Prompt Enhancer</h2>
+            <textarea id="prompt-enhancer-text" readonly>Using the provided context, format the given input text appropriately for text-to-speech (TTS) to ensure it is spoken correctly. Apply the formatting creatively and consistently across various instances, including but not limited to symbols and specific expressions.
 
 Context:
 The output will be used by a TTS system to speak certain formats correctly. Apply specific formatting such as replacing symbols with their verbal equivalents (e.g., ? as "question_mark," ! as "exclamation_mark"), converting mathematical expressions into spoken form, and indicating the structure of the content (e.g., headings, line breaks).
@@ -582,11 +583,11 @@ Output: what the hell double_exclamation_mark
 Note: This formatting is not limited to the given examples. Apply it to all instances where such formatting is necessary to ensure accurate verbal representation in TTS output.
 
 INPUT:</textarea>
-            <button id="copy-prompt" w-tid="68">Copy Prompt</button>
+            <button id="copy-prompt">Copy Prompt</button>
         </div>
     </div>
 
-    <script w-tid="69">
+    <script>
         const inputText = document.getElementById('input-text');
         const startBtn = document.getElementById('start-btn');
         const stopBtn = document.getElementById('stop-btn');
@@ -616,6 +617,7 @@ INPUT:</textarea>
         const immersiveSpellingBtn = document.getElementById('immersive-spelling');
         const menuToggle = document.querySelector('.menu-toggle');
         const navLinks = document.querySelector('.nav-links');
+        const wordsPerGroupInput = document.getElementById('words-per-group');
 
         let synth = window.speechSynthesis;
         let voices = [];
@@ -624,6 +626,7 @@ INPUT:</textarea>
         let autoSpeak = false;
         let touchStartX = 0;
         let touchEndX = 0;
+        let wordsPerGroup = 1;
 
         function populateVoiceList() {
             voices = synth.getVoices();
@@ -671,9 +674,9 @@ INPUT:</textarea>
         function updateCurrentWord(index) {
             if (index >= 0 && index < words.length) {
                 currentWordIndex = index;
-                const word = words[currentWordIndex];
-                currentWordDiv.innerHTML = `<span class="highlight">${word}</span>`;
-                immersiveWordDiv.innerHTML = `<span class="highlight">${word}</span>`;
+                const wordGroup = words.slice(currentWordIndex, currentWordIndex + wordsPerGroup).join(' ');
+                currentWordDiv.innerHTML = `<span class="highlight">${wordGroup}</span>`;
+                immersiveWordDiv.innerHTML = `<span class="highlight">${wordGroup}</span>`;
                 currentWordDiv.classList.remove('fade-in');
                 immersiveWordDiv.classList.remove('fade-in');
                 void currentWordDiv.offsetWidth;
@@ -681,7 +684,7 @@ INPUT:</textarea>
                 currentWordDiv.classList.add('fade-in');
                 immersiveWordDiv.classList.add('fade-in');
                 if (autoSpeak) {
-                    speak(word).catch(console.error);
+                    speak(wordGroup).catch(console.error);
                 }
             } else if (index >= words.length) {
                 currentWordDiv.innerHTML = '<span class="highlight">End of Text</span>';
@@ -696,32 +699,34 @@ INPUT:</textarea>
         }
 
         function speakNextWord() {
-            if (currentWordIndex + 1 < words.length) {
-                updateCurrentWord(currentWordIndex + 1);
-                speak(words[currentWordIndex]).catch(console.error);
+            if (currentWordIndex + wordsPerGroup < words.length) {
+                updateCurrentWord(currentWordIndex + wordsPerGroup);
+                const wordGroup = words.slice(currentWordIndex, currentWordIndex + wordsPerGroup).join(' ');
+                speak(wordGroup).catch(console.error);
             } else {
                 updateCurrentWord(words.length);
             }
         }
 
         function speakPreviousWord() {
-            if (currentWordIndex > 0) {
-                updateCurrentWord(currentWordIndex - 1);
-                speak(words[currentWordIndex]).catch(console.error);
+            if (currentWordIndex - wordsPerGroup >= 0) {
+                updateCurrentWord(currentWordIndex - wordsPerGroup);
+                const wordGroup = words.slice(currentWordIndex, currentWordIndex + wordsPerGroup).join(' ');
+                speak(wordGroup).catch(console.error);
             }
         }
 
         function speakSpelling() {
             if (currentWordIndex >= 0 && currentWordIndex < words.length) {
-                const word = words[currentWordIndex];
-                const spelling = word.split('').join(' ');
+                const wordGroup = words.slice(currentWordIndex, currentWordIndex + wordsPerGroup).join(' ');
+                const spelling = wordGroup.split('').join(' ');
                 speak(spelling, true).catch(console.error);
             }
         }
 
         startBtn.addEventListener('click', () => {
             words = inputText.value.trim().split(/\s+/);
-            currentWordIndex = -1;
+            currentWordIndex = -wordsPerGroup;
             speakNextWord();
         });
 
@@ -729,7 +734,7 @@ INPUT:</textarea>
             synth.cancel();
             currentWordDiv.textContent = "";
             immersiveWordDiv.textContent = "";
-            currentWordIndex = -1;
+            currentWordIndex = -wordsPerGroup;
         });
 
         nextWordBtn.addEventListener('click', speakNextWord);
@@ -799,18 +804,32 @@ INPUT:</textarea>
 
         currentWordDiv.addEventListener('click', () => {
             if (currentWordIndex >= 0 && currentWordIndex < words.length) {
-                speak(words[currentWordIndex]).catch(console.error);
+                const wordGroup = words.slice(currentWordIndex, currentWordIndex + wordsPerGroup).join(' ');
+                speak(wordGroup).catch(console.error);
             }
         });
 
         immersiveWordDiv.addEventListener('click', () => {
             if (currentWordIndex >= 0 && currentWordIndex < words.length) {
-                speak(words[currentWordIndex]).catch(console.error);
+                const wordGroup = words.slice(currentWordIndex, currentWordIndex + wordsPerGroup).join(' ');
+                speak(wordGroup).catch(console.error);
             }
         });
 
         autoSpeakToggle.addEventListener('change', (e) => {
             autoSpeak = e.target.checked;
+        });
+
+        wordsPerGroupInput.addEventListener('change', (e) => {
+            wordsPerGroup = parseInt(e.target.value, 10);
+            if (isNaN(wordsPerGroup) || wordsPerGroup < 1) {
+                wordsPerGroup = 1;
+                e.target.value = 1;
+            } else if (wordsPerGroup > 10) {
+                wordsPerGroup = 10;
+                e.target.value = 10;
+            }
+            updateCurrentWord(currentWordIndex);
         });
 
         // Swipe gestures for immersive mode
@@ -849,33 +868,25 @@ INPUT:</textarea>
         });
 
         copyPromptBtn.addEventListener('click', () => {
-            const promptText = document.getElementById('prompt-enhancer-text').value;
-            navigator.clipboard.writeText(promptText).then(() => {
-                alert('Prompt copied to clipboard!');
-            }).catch(err => {
-                console.error('Failed to copy text: ', err);
-            });
+            const promptText = document.getElementById('prompt-enhancer-text');
+            promptText.select();
+            document.execCommand('copy');
+            alert('Prompt copied to clipboard!');
         });
-
-        immersivePrevBtn.addEventListener('click', speakPreviousWord);
-        immersiveNextBtn.addEventListener('click', speakNextWord);
-        immersiveSpellingBtn.addEventListener('click', speakSpelling);
 
         menuToggle.addEventListener('click', () => {
             navLinks.classList.toggle('show');
         });
 
-        function handleResize() {
-            if (window.innerWidth > 768) {
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('nav') && navLinks.classList.contains('show')) {
                 navLinks.classList.remove('show');
-                menuToggle.style.display = 'none';
-            } else {
-                menuToggle.style.display = 'block';
             }
-        }
+        });
 
-        window.addEventListener('resize', handleResize);
-        handleResize();
+        immersivePrevBtn.addEventListener('click', speakPreviousWord);
+        immersiveNextBtn.addEventListener('click', speakNextWord);
+        immersiveSpellingBtn.addEventListener('click', speakSpelling);
 
         // How to Use modal
         const howToUseBtn = document.getElementById('how-to-use');
@@ -886,15 +897,16 @@ INPUT:</textarea>
                 <span class="close">×</span>
                 <h2>How to Use UnSeeSound</h2>
                 <ol>
-                    <li>Enter your text in the input area.</li>
-                    <li>Click "Start" to begin text-to-speech.</li>
-                    <li>Use "Next Word" or press the Space key to move to the next word.</li>
-                    <li>Click "Spelling" or press the S key to hear the spelling of the current word.</li>
-                    <li>Use the left and right arrow keys to navigate between words.</li>
-                    <li>Adjust voice, speed, pitch, and volume in Settings.</li>
-                    <li>Try Immersive Mode for a full-screen experience.</li>
-                    <li>Use the Prompt Enhancer to format your text for optimal TTS performance.</li>
+                    <li>Enter or paste your text into the text area.</li>
+                    <li>Click the "Start" button to begin reading.</li>
+                    <li>Use the "Next Word" button or press the Spacebar to move to the next word.</li>
+                    <li>Click the "Spelling" button or press 'S' to hear the spelling of the current word.</li>
+                    <li>Use the arrow buttons or left/right arrow keys to navigate between words.</li>
+                    <li>Click "Immersive Mode" for a fullscreen reading experience.</li>
+                    <li>Adjust settings like voice, speed, and pitch in the Settings menu.</li>
+                    <li>Use the Prompt Enhancer to format your text for better TTS results.</li>
                 </ol>
+                <p>Tip: You can click on the current word to hear it again!</p>
             </div>
         `;
         document.body.appendChild(howToUseModal);
@@ -915,228 +927,40 @@ INPUT:</textarea>
             }, 300);
         });
 
-        // Dark mode toggle
-        const darkModeToggle = document.createElement('button');
-        darkModeToggle.id = 'dark-mode-toggle';
-        darkModeToggle.textContent = '🌓';
-        darkModeToggle.style.position = 'fixed';
-        darkModeToggle.style.bottom = '1rem';
-        darkModeToggle.style.right = '1rem';
-        darkModeToggle.style.padding = '0.5rem';
-        darkModeToggle.style.fontSize = '1.5rem';
-        darkModeToggle.style.backgroundColor = 'var(--card)';
-        darkModeToggle.style.border = 'none';
-        darkModeToggle.style.borderRadius = 'var(--radius)';
-        darkModeToggle.style.cursor = 'pointer';
-        document.body.appendChild(darkModeToggle);
+        // Initialize with default settings
+        speedSlider.value = 1;
+        pitchSlider.value = 1;
+        volumeSlider.value = 1;
+        autoSpeakToggle.checked = false;
+        wordsPerGroupInput.value = 1;
 
-        function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
-            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+        // Theme toggle functionality
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
         }
 
-        darkModeToggle.addEventListener('click', toggleDarkMode);
+        const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        setTheme(savedTheme);
 
-        // Check for saved dark mode preference
-        if (localStorage.getItem('darkMode') === 'true') {
-            document.body.classList.add('dark-mode');
-        }
+        const themeToggle = document.createElement('button');
+        themeToggle.id = 'theme-toggle';
+        themeToggle.innerHTML = savedTheme === 'light' ? '🌙' : '☀️';
+        themeToggle.style.position = 'fixed';
+        themeToggle.style.bottom = '20px';
+        themeToggle.style.right = '20px';
+        themeToggle.style.fontSize = '24px';
+        themeToggle.style.background = 'none';
+        themeToggle.style.border = 'none';
+        themeToggle.style.cursor = 'pointer';
+        themeToggle.style.zIndex = '1000';
+        document.body.appendChild(themeToggle);
 
-        // Prevent text selection in immersive mode
-        immersiveView.addEventListener('selectstart', (e) => e.preventDefault());
-
-        // Add visual feedback for button clicks
-        const buttons = document.querySelectorAll('button');
-        buttons.forEach(button => {
-            button.addEventListener('click', function() {
-                this.style.transform = 'scale(0.95)';
-                setTimeout(() => {
-                    this.style.transform = 'scale(1)';
-                }, 100);
-            });
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            setTheme(newTheme);
+            themeToggle.innerHTML = newTheme === 'light' ? '🌙' : '☀️';
         });
-
-        // Add tooltip for current word
-        const tooltip = document.createElement('div');
-        tooltip.style.position = 'absolute';
-        tooltip.style.backgroundColor = 'var(--card)';
-        tooltip.style.color = 'var(--card-foreground)';
-        tooltip.style.padding = '0.5rem';
-        tooltip.style.borderRadius = 'var(--radius)';
-        tooltip.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
-        tooltip.style.display = 'none';
-        tooltip.style.zIndex = '1000';
-        document.body.appendChild(tooltip);
-
-        currentWordDiv.addEventListener('mouseover', (e) => {
-            if (currentWordIndex >= 0 && currentWordIndex < words.length) {
-                tooltip.textContent = `Word ${currentWordIndex + 1} of ${words.length}`;
-                tooltip.style.display = 'block';
-                tooltip.style.left = `${e.pageX + 10}px`;
-                tooltip.style.top = `${e.pageY + 10}px`;
-            }
-        });
-
-        currentWordDiv.addEventListener('mouseout', () => {
-            tooltip.style.display = 'none';
-        });
-
-        // Add a progress bar
-        const progressBar = document.createElement('div');
-        progressBar.style.width = '100%';
-        progressBar.style.height = '5px';
-        progressBar.style.backgroundColor = 'var(--accent)';
-        progressBar.style.position = 'fixed';
-        progressBar.style.top = '0';
-        progressBar.style.left = '0';
-        progressBar.style.zIndex = '1001';
-
-        const progressIndicator = document.createElement('div');
-        progressIndicator.style.width = '0%';
-        progressIndicator.style.height = '100%';
-        progressIndicator.style.backgroundColor = 'var(--primary)';
-        progressIndicator.style.transition = 'width 0.3s ease';
-
-        progressBar.appendChild(progressIndicator);
-        document.body.appendChild(progressBar);
-
-        function updateProgressBar() {
-            if (words.length > 0) {
-                const progress = ((currentWordIndex + 1) / words.length) * 100;
-                progressIndicator.style.width = `${progress}%`;
-            } else {
-                progressIndicator.style.width = '0%';
-            }
-        }
-
-        // Update progress bar when changing words
-        const originalUpdateCurrentWord = updateCurrentWord;
-        updateCurrentWord = function(index) {
-            originalUpdateCurrentWord(index);
-            updateProgressBar();
-        };
-
-        // Add keyboard shortcuts modal
-        const keyboardShortcutsBtn = document.createElement('button');
-        keyboardShortcutsBtn.textContent = '⌨️';
-        keyboardShortcutsBtn.style.position = 'fixed';
-        keyboardShortcutsBtn.style.bottom = '1rem';
-        keyboardShortcutsBtn.style.left = '1rem';
-        keyboardShortcutsBtn.style.padding = '0.5rem';
-        keyboardShortcutsBtn.style.fontSize = '1.5rem';
-        keyboardShortcutsBtn.style.backgroundColor = 'var(--card)';
-        keyboardShortcutsBtn.style.border = 'none';
-        keyboardShortcutsBtn.style.borderRadius = 'var(--radius)';
-        keyboardShortcutsBtn.style.cursor = 'pointer';
-        document.body.appendChild(keyboardShortcutsBtn);
-
-        const keyboardShortcutsModal = document.createElement('div');
-        keyboardShortcutsModal.className = 'modal';
-        keyboardShortcutsModal.innerHTML = `
-            <div class="modal-content">
-                <span class="close">×</span>
-                <h2>Keyboard Shortcuts</h2>
-                <ul>
-                    <li><strong>Space:</strong> Next word</li>
-                    <li><strong>S:</strong> Spell current word</li>
-                    <li><strong>Left Arrow:</strong> Previous word</li>
-                    <li><strong>Right Arrow:</strong> Next word</li>
-                    <li><strong>Esc:</strong> Exit immersive mode</li>
-                </ul>
-            </div>
-        `;
-        document.body.appendChild(keyboardShortcutsModal);
-
-        const closeKeyboardShortcutsBtn = keyboardShortcutsModal.querySelector('.close');
-
-        keyboardShortcutsBtn.addEventListener('click', () => {
-            keyboardShortcutsModal.style.display = 'block';
-            setTimeout(() => {
-                keyboardShortcutsModal.classList.add('show');
-            }, 10);
-        });
-
-        closeKeyboardShortcutsBtn.addEventListener('click', () => {
-            keyboardShortcutsModal.classList.remove('show');
-            setTimeout(() => {
-                keyboardShortcutsModal.style.display = 'none';
-            }, 300);
-        });
-
-        // Add Esc key functionality to exit immersive mode
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && immersiveView.classList.contains('show')) {
-                exitImmersiveBtn.click();
-            }
-        });
-
-        // Add word count display
-        const wordCountDisplay = document.createElement('div');
-        wordCountDisplay.style.position = 'absolute';
-        wordCountDisplay.style.top = '0.5rem';
-        wordCountDisplay.style.right = '0.5rem';
-        wordCountDisplay.style.fontSize = '0.8rem';
-        wordCountDisplay.style.color = 'var(--secondary)';
-        inputText.parentNode.style.position = 'relative';
-        inputText.parentNode.appendChild(wordCountDisplay);
-
-        inputText.addEventListener('input', updateWordCount);
-
-        function updateWordCount() {
-            const count = inputText.value.trim().split(/\s+/).length;
-            wordCountDisplay.textContent = `${count} word${count !== 1 ? 's' : ''}`;
-        }
-
-        // Initialize word count
-        updateWordCount();
-
-        // Add text-to-speech for UI elements
-        const uiElements = document.querySelectorAll('button, a, label, h2');
-        uiElements.forEach(element => {
-            element.addEventListener('mouseover', () => {
-                if (autoSpeak) {
-                    speak(element.textContent).catch(console.error);
-                }
-            });
-        });
-
-        // Add confetti effect for completing the text
-        function showConfetti() {
-            const confettiCount = 200;
-            const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
-
-            for (let i = 0; i < confettiCount; i++) {
-                const confetti = document.createElement('div');
-                confetti.style.position = 'fixed';
-                confetti.style.width = '10px';
-                confetti.style.height = '10px';
-                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.left = `${Math.random() * 100}vw`;
-                confetti.style.top = '-10px';
-                confetti.style.borderRadius = '50%';
-                confetti.style.zIndex = '9999';
-                document.body.appendChild(confetti);
-
-                const animation = confetti.animate([
-                    { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
-                    { transform: `translateY(100vh) rotate(${720 * Math.random()}deg)`, opacity: 0 }
-                ], {
-                    duration: 3000 + Math.random() * 3000,
-                    easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
-                });
-
-                animation.onfinish = () => confetti.remove();
-            }
-        }
-
-        // Show confetti when reaching the end of the text
-        const originalSpeakNextWord = speakNextWord;
-        speakNextWord = function() {
-            originalSpeakNextWord();
-            if (currentWordIndex >= words.length - 1) {
-                showConfetti();
-            }
-        };
-
     </script>
 </body></html>
